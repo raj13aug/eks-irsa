@@ -24,7 +24,7 @@ resource "aws_s3_bucket" "bucket" {
 } */
 
 
-data "aws_iam_policy_document" "s3" {
+data "aws_iam_policy_document" "document" {
   statement {
     sid    = ""
     effect = "Allow"
