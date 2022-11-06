@@ -12,13 +12,37 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
-data "aws_iam_policy_document" "document" {
+/* data "aws_iam_policy_document" "document" {
   statement {
     actions = [
       "s3:GetObject",
     ]
     resources = [
       "arn:aws:s3:us-east-1:932999788441:my-irsa-eks-test-bucket:*",
+    ]
+  }
+} */
+
+
+data "aws_iam_policy_document" "s3" {
+  statement {
+    sid    = ""
+    effect = "Allow"
+    actions = [
+      "s3:ListBucket"
+    ]
+    resources = [
+      "arn:aws:s3:::my-irsa-eks-test-bucket:*",
+    ]
+  }
+  statement {
+    sid    = ""
+    effect = "Allow"
+    actions = [
+      "s3:GetObject",
+    ]
+    resources = [
+      "arn:aws:s3:::my-irsa-eks-test-bucket:*",
     ]
   }
 }
